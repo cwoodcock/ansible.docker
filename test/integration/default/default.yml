@@ -1,8 +1,19 @@
 ---
 
 - hosts: all
+  tasks:
+    - name: apt proxy host fact
+      set_fact:
+        apt_cache_host: "{{ lookup('env', 'APT_CACHE_HOST') }}"
+    - name: configure apt proxy
+      lineinfile:
+        dest: /etc/apt/apt.conf.d/02proxy
+        create: yes
+        regexp: '^Acquire::http'
+        line: "Acquire::http { Proxy \"http://{{ apt_cache_host }}:{{ apt_cache_port|default('3142') }}\"; };"
+        owner: root
+        group: root
+        mode: 0644
+      when: apt_cache_host != ""
   roles:
     - docker
-  tasks:
-    - name: are we alive
-      ping:
