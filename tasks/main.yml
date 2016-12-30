@@ -136,7 +136,8 @@
 - meta: flush_handlers
   when: "dns_fix|changed"
 
-- pause:
+- name: wait a second
+  pause:
     seconds: 1
   when: "dns_fix|changed"
 
