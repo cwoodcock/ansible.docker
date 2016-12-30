@@ -6,24 +6,31 @@ role = File.basename(File.expand_path(File.dirname(__FILE__)))
 ENV['ANSIBLE_ROLES_PATH'] = "../"
 
 boxes = [
+#  {
+#    :name => "ubuntu-1204",
+#    :box => "ubuntu/precise64",
+#    :ip => '10.0.77.11',
+#    :cpu => "33",
+#    :ram => "256"
+#  },
+#  {
+#    :name => "ubuntu-1404",
+#    :box => "ubuntu/trusty64",
+#    :ip => '10.0.77.12',
+#    :cpu => "33",
+#    :ram => "256"
+#  },
+#  {
+#    :name => "debian-jessie",
+#    :box => "debian/jessie64",
+#    :ip => '10.0.77.13',
+#    :cpu => "33",
+#    :ram => "256"
+#  },
   {
-    :name => "ubuntu-1204",
-    :box => "ubuntu/precise64",
-    :ip => '10.0.77.11',
-    :cpu => "33",
-    :ram => "256"
-  },
-  {
-    :name => "ubuntu-1404",
-    :box => "ubuntu/trusty64",
-    :ip => '10.0.77.12',
-    :cpu => "33",
-    :ram => "256"
-  },
-  {
-    :name => "debian-jessie",
-    :box => "debian/jessie64",
-    :ip => '10.0.77.13',
+    :name => "ubuntu-1604",
+    :box => "cwoodcock/ubuntu-16.04",
+    :ip => "10.0.77.14",
     :cpu => "33",
     :ram => "256"
   },
@@ -39,6 +46,7 @@ Vagrant.configure("2") do |config|
       vms.vm.provider "virtualbox" do |v|
         v.customize ["modifyvm", :id, "--cpuexecutioncap", box[:cpu]]
         v.customize ["modifyvm", :id, "--memory", box[:ram]]
+        v.linked_clone = true
       end
 
       vms.vm.network :private_network, ip: box[:ip]
