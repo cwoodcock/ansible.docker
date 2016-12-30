@@ -1,0 +1,5 @@
+---
+
+- src: https://github.com/cwoodcock/ansible.docker
+  version: master
+  name: docker

@@ -1,0 +1,8 @@
+---
+
+- hosts: all
+  roles:
+    - docker
+  tasks:
+    - name: are we alive
+      ping:

@@ -1,0 +1,29 @@
+---
+driver:
+  name: vagrant
+
+#driver_config:
+#  require_chef_omnibus: true
+
+provisioner:
+  name: ansible_playbook
+  hosts: test-kitchen
+  require_chef_for_busser: false
+  require_ruby_for_busser: true
+  ansible_verbosity: 2
+  ansible_verbose: true
+  requirements_path: requirements-test.yml
+
+platforms:
+  - name: cwoodcock/ubuntu-16.04
+    driver:
+      linked_clone: true
+
+suites:
+  - name: default
+    run_list:
+    attributes:
+
+# Fix for: https://github.com/neillturner/kitchen-ansible/issues/66
+verifier:
+  ruby_bindir: '/usr/bin'
