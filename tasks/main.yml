@@ -25,8 +25,9 @@
   when: ansible_distribution_version|version_compare(16.04, '=')
 
 - name: Read uname
-  shell: uname -r
+  command: uname -r
   register: uname_output
+  changed_when: false
 
 - name: Install linux-image-extra-* packages to enable AuFS driver
   apt: pkg={{ item }} state=present
