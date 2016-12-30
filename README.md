@@ -30,9 +30,11 @@ None.
 Testing
 -------
 
-To test the role in a Vagrant environment just run `vagrant up` and it will provision by applying this role with Ansible.
+Setup a Ruby environment (rvm ftw) and install bundler, then do a `bundle install`.
 
-Requires `ansible-playbook` to be in the path.
+Then you can run `kitchen test` to run the test suites.
+
+Note: requires `ansible-playbook` to be in the path.
 
 License
 -------
