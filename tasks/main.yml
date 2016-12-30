@@ -46,11 +46,6 @@
     keyserver: "{{ apt_key_url }}"
     state: present
   register: add_repository_key
-  ignore_errors: true
-
-- name: Alternative | Add Docker repository key
-  shell: "curl -sSL {{ apt_key_url }} | sudo apt-key add -"
-  when: add_repository_key|failed
 
 - name: HTTPS APT transport for Docker repository
   apt:
