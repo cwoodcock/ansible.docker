@@ -12,6 +12,7 @@ provisioner:
   requirements_path: requirements-test.yml
   env_vars:
     APT_CACHE_HOST: "<%= ENV['APT_CACHE_HOST'] %>"
+    APT_CACHE_PORT: "<%= ENV['APT_CACHE_PORT'] || '3142' %>"
 platforms:
   - name: cwoodcock/ubuntu-16.04
     driver:

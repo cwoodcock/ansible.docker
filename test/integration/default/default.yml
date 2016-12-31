@@ -5,12 +5,13 @@
     - name: apt proxy host fact
       set_fact:
         apt_cache_host: "{{ lookup('env', 'APT_CACHE_HOST') }}"
+        apt_cache_port: "{{ lookup('env', 'APT_CACHE_PORT') }}"
     - name: configure apt proxy
       lineinfile:
         dest: /etc/apt/apt.conf.d/02proxy
         create: yes
         regexp: '^Acquire::http'
-        line: "Acquire::http { Proxy \"http://{{ apt_cache_host }}:{{ apt_cache_port|default('3142') }}\"; };"
+        line: "Acquire::http { Proxy \"http://{{ apt_cache_host }}:{{ apt_cache_port }}\"; };"
         owner: root
         group: root
         mode: 0644

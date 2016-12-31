@@ -36,6 +36,12 @@ Then you can run `kitchen test` to run the test suites.
 
 Note: requires `ansible-playbook` to be in the path.
 
+To speed up local dev (or behind any slow connection) an apt proxy can be
+configured.  It has been tested against apt-cacher-ng.  If the host has the
+environment variable APT_CACHE_HOST set to the ip/fqdn of the proxy then this
+will be passed to the test VM and the proxy will be used.  By default it will
+use port 3142, but that can be overriden with a host env var APT_CACHE_PORT.
+
 License
 -------
 
