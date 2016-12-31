@@ -1,7 +1,7 @@
 ---
 
 - hosts: all
-  tasks:
+  pre_tasks:
     - name: apt proxy host fact
       set_fact:
         apt_cache_host: "{{ lookup('env', 'APT_CACHE_HOST') }}"
